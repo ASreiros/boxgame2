@@ -15,7 +15,8 @@ bbs.addEventListener("click", () => {
     bbc.classList.remove("bbhiden");
     bbc.classList.add("bbshown");
     info.innerHTML = ""
-    stopwatch();  
+    stopwatch();
+    const obj = new Ball(16)  
 })
 
 bbc.addEventListener("click", () => {
@@ -134,7 +135,7 @@ bbc.addEventListener("click", () => {
     const boxRight = document.getElementById("right-box")
 let boxRighthtml = "";
 
-for (let i = 1; i < 26; i++) {
+for (let i = 1; i < 17; i++) {
 const temphtml = `<div class="smallboxR" id ="r${i}"></div>`
 boxRighthtml =boxRighthtml + temphtml;    
 }
@@ -145,6 +146,135 @@ boxRight.innerHTML = boxRighthtml;
 // ball generation
 
 class Ball{
-    
+    static randomArr = [];
 
+    static triger(x){
+        while (this.randomArr.length < x) {
+            let checker = 0;    
+            const element = this.rand(1,x);
+            this.randomArr.forEach(a => {
+                if (a === element){
+            checker++
+                }
+            })
+
+            if(checker === 0){
+            this.randomArr.push(element)
+            }
+        }
+    }
+
+    static ballfunction (x){
+        for (let i = 0; i < x; i++) {
+            //generuoja kamuoliukus
+            const ball = document.createElement(`p`);
+            const ballnumber = document.createTextNode(`${this.randomArr[i]}`)
+            this.rand(0,1)===0 ? ball.classList.add("ball") : ball.classList.add("fastball")
+            ball.setAttribute("id", `bb${this.randomArr[i]}`);
+            
+            //spalvos blokas
+            const color1 = rand(0,255);
+            const color2 = rand(0,255);
+            const color3 = rand(0,255);
+            let color4 = ""
+            const suma = color1 + color2 + color3
+            if (suma < 350) {
+            color4 = "white"    
+            } else{
+            color4 = "black"    
+            }
+            ball.style.color = color4
+            ball.style.backgroundColor = `rgb(${color1}, ${color2}, ${color3})` 
+            //spalvos blokas-end
+            
+            ball.appendChild(ballnumber);
+            document.querySelector(".ball-holder").appendChild(ball);
+            firstpositioning(`bb${this.randomArr[i]}`)
+            ball.addEventListener("click", ()=> { iclick(`bb${this.randomArr[i]}`) })
+        }
+    }
+
+    static rand(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1) + min);
+    }
+
+
+    constructor(x){
+        this.constructor.triger(x);
+        this.constructor.ballfunction (x);
+     
+    }
 }
+
+function firstpositioning(id) {
+    const target = document.querySelector(`#${id}`);
+    const width = window.screen.width*0.9 - 40
+    const height = screen.height*0.7 - 40
+    target.style.left = `${rand(20,width)}px`   
+    target.style.top = `${rand(20,height)}px`  
+    setTimeout(positioning, 0, id)
+}
+
+function positioning(id) {
+    const checker = id.substring(2)
+    if(checker >= gamechecker){
+    const target = document.querySelector(`#${id}`);
+    const width = window.screen.width*0.9 - 40
+    const height = screen.height*0.7 - 40
+    target.style.left = `${rand(20,width)}px`   
+    target.style.top = `${rand(20,height)}px`  
+    setTimeout(positioning, `${rand(4000,5000)}`, id)
+    }
+}
+
+
+function iclick(id) {
+    console.log("click located", id);
+    if(id === `bb${gamechecker}`){
+    myPositionTimeout = clearTimeout   
+    const house = document.getElementById(`r${gamechecker}`)
+    const iball = document.getElementById(`bb${gamechecker}`)
+    iball.removeEventListener("click",iclick)
+    iball.setAttribute("id", `bb${gamechecker+16}`)
+    iball.classList.remove("fastball")
+    iball.classList.remove("ball")
+    iball.classList.add("stopball")
+    house.appendChild(iball)
+        if (gamechecker === 16){
+            info.innerHTML = "you won!!!"
+            clearTimeout(myTimeout);
+            highscorechecker();
+        }else{
+            gamechecker++;
+        }
+    } else {
+    const a = rand(1,3)
+    let atext = "";
+    let textclearer = setTimeout(textclear,0);
+    switch (a) {
+        case 1:
+            atext = "Wrong ball";
+            clearTimeout(textclearer);
+            textclearer = setTimeout(textclear,1500);
+        break;
+        case 2:
+            atext = "Nope"
+            clearTimeout(textclearer);
+            textclearer = setTimeout(textclear,1500);
+        break;
+        case 3:
+            atext = "incorrect, click again"
+            clearTimeout(textclearer);
+            textclearer = setTimeout(textclear,1500);
+        break;
+    }    
+    info.innerHTML = atext;
+    
+    function textclear() {
+        info.innerHTML = "";  
+    } 
+    }
+    
+    }
