@@ -1,7 +1,7 @@
 {
   "name": "boxgame",
   "version": "1.0.0",
-  "description": "",
+  "description": "![LICENSE](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)\r ![Security Status](https://img.shields.io/security-headers?label=Security&url=https%3A%2F%2Fgithub.com&style=flat-square)",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -12,5 +12,13 @@
   "license": "MIT",
   "devDependencies": {
     "dead-server": "^1.0.6"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ASreiros/boxgame2.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ASreiros/boxgame2/issues"
+  },
+  "homepage": "https://github.com/ASreiros/boxgame2#readme"
 }
