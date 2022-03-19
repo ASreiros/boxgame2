@@ -78,8 +78,8 @@
 
 
 .ball-holder{
-    width:90vw;
-    height: 80vh;
+    width:70vw;
+    height: 60vh;
     display: flex;
     justify-content: space-around;
     min-height: 200px;
@@ -131,7 +131,7 @@
 
 .ball, .fastball{
     border-radius: 50%;
-    border: 1px rgb(0, 0, 0, 0.3) solid;
+    /* border: 1px rgb(0, 0, 0, 0.3) solid; */
     height:50px;
     width:50px;
     font-size: 14px;

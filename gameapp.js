@@ -184,7 +184,7 @@ class Ball{
             color4 = "black"    
             }
             ball.style.color = color4
-            ball.style.backgroundColor = `rgb(${color1}, ${color2}, ${color3})` 
+            ball.style.background = `radial-gradient(circle at 15px 15px, rgb(${color1}, ${color2}, ${color3}), #000)` 
             //spalvos blokas-end
             
             ball.appendChild(ballnumber);
@@ -221,8 +221,8 @@ function positioning(id) {
     const checker = id.substring(2)
     if(checker >= gamechecker){
     const target = document.querySelector(`#${id}`);
-    const width = window.screen.width*0.9 - 40
-    const height = screen.height*0.7 - 40
+    const width = window.screen.width*0.7 - 40
+    const height = screen.height*0.5 - 40
     target.style.left = `${rand(20,width)}px`   
     target.style.top = `${rand(20,height)}px`  
     setTimeout(positioning, `${rand(4000,5000)}`, id)
