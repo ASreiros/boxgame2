@@ -28,9 +28,11 @@ bbc.addEventListener("click", () => {
     clock.innerHTML = "00:00:00" 
     gamechecker = 1;
     t = -1;
-    info.innerHTML = "Press start to play again"
-    for (let i = 1; i < 26; i++) {  
-    }
+    info.innerHTML = "Press start to play again";
+    document.querySelector(".ball-holder").innerHTML = "";
+    for (let i = 1; i < 26; i++) {
+        document.querySelector(`#r${i}`).innerHTML = "";   
+        }
     })
 
     let gamechecker = 1;    
@@ -209,11 +211,11 @@ class Ball{
 }
 
 function firstpositioning(id) {
-    const target = document.querySelector(`#${id}`);
-    const width = window.screen.width*0.9 - 40
-    const height = screen.height*0.7 - 40
-    target.style.left = `${rand(20,width)}px`   
-    target.style.top = `${rand(20,height)}px`  
+    const target = document.querySelector(`#${id}`);   
+    const width = document.querySelector('.ball-holder').clientWidth
+    const height = document.querySelector('.ball-holder').clientHeight
+    target.style.left = `${rand(-50,width+50)}px`   
+    target.style.top = `${rand(-50,height+50)}px`  
     setTimeout(positioning, 0, id)
 }
 
@@ -221,10 +223,12 @@ function positioning(id) {
     const checker = id.substring(2)
     if(checker >= gamechecker){
     const target = document.querySelector(`#${id}`);
-    const width = window.screen.width*0.7 - 40
-    const height = screen.height*0.5 - 40
-    target.style.left = `${rand(20,width)}px`   
-    target.style.top = `${rand(20,height)}px`  
+    const swidth = document.querySelector('.ball-holder').clientWidth*0.05
+    const sheight = document.querySelector('.ball-holder').clientHeight*0.05   
+    const width = document.querySelector('.ball-holder').clientWidth*0.9
+    const height = document.querySelector('.ball-holder').clientHeight*0.9
+    target.style.left = `${rand(swidth,width)}px`   
+    target.style.top = `${rand(sheight,height)}px`  
     setTimeout(positioning, `${rand(4000,5000)}`, id)
     }
 }
