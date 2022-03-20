@@ -158,6 +158,7 @@
     line-height: 14px;
    padding-top: 18px;
     text-align: center;
+    user-select: none;
 }
 
 .message-screen{
@@ -167,8 +168,9 @@
     text-transform: uppercase;
     border: 1px double darkcyan;
     width: 300px;
-    min-height: 150px;
+    min-height: 50px;
     text-align: center;
+    user-select: none;
 }
 
 .infosection{
