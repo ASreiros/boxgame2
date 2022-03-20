@@ -75,6 +75,15 @@
     text-align: left;  
 }
 
+.select{
+    width:200px;
+    background-color: lightskyblue;
+    text-align: center;
+}
+
+.select > option{
+    background-color: lightskyblue; 
+}
 
 
 .ball-holder{
@@ -132,7 +141,6 @@
     line-height: 1vw;
    padding-top: 0.75vw;
     text-align: center;
-    transition: 5000ms;
     transition-timing-function: linear;
     cursor:crosshair;
     position: absolute;
@@ -140,9 +148,6 @@
     user-select: none;
 }
 
-.fastball{
-    transition: 4000ms;
-}
 
 .stopball{
     border-radius: 50%;
@@ -171,4 +176,8 @@
     flex-direction: column-reverse;
     justify-content: center;
     align-items: center;
+}
+
+.noshow{
+    display: none;
 }
